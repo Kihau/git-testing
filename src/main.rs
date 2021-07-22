@@ -1,6 +1,13 @@
 use std::{collections::HashMap, fs::File, io::Write};
 
 fn main() {
+    let c: char = 'Ą';
+    println!("{}", c.is_lowercase());
+    println!("{}", c.to_lowercase());
+}
+
+#[allow(dead_code)]
+fn word_occurrences() {
     let mut args = std::env::args();
     args.next();
 
