@@ -1,12 +1,11 @@
-use std::{collections::HashMap, fs::File, io::Write};
+use std::{collections::HashMap, fs::File, io::Write, time::Instant};
 
 fn main() {
-    let c: char = 'Ą';
-    println!("{}", c.is_lowercase());
-    println!("{}", c.to_lowercase());
+    let now = Instant::now();
+    word_occurrences();
+    println!("Executed in: {:?}", now.elapsed());
 }
 
-#[allow(dead_code)]
 fn word_occurrences() {
     let mut args = std::env::args();
     args.next();
@@ -63,6 +62,9 @@ fn word_occurrences() {
 
     let mut output = format!("Number of unique words: {:?}\n", hash_vec.len());
     output.push_str(format!("{} - unique word occurances:\n {:?}\n", path, hash_vec).as_str());
+
+    // let mut output = format!("Number of unique words: {:?}\n", map.len());
+    // output.push_str(format!("{} - unique word occurances:\n {:?}\n", path, map).as_str());
 
     let mut file = File::create("output_occurances.txt").unwrap();
     file.write_all(output.as_bytes()).unwrap();
